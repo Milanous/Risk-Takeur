@@ -1,0 +1,183 @@
+/*
+	Risk Takeur — Direction artistique
+	Or : #c69c4d / Blanc / Noir
+	Charger après main.css
+*/
+
+:root {
+	--rt-gold: #c69c4d;
+	--rt-gold-dark: #a87f35;
+	--rt-black: #1a1a1a;
+}
+
+/* Sélection de texte */
+::selection {
+	background-color: #c69c4d;
+	color: #ffffff;
+}
+
+/* Liens */
+a:hover {
+	color: #c69c4d !important;
+}
+
+a:hover:before {
+	color: #c69c4d !important;
+}
+
+/* Boutons */
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+button:hover,
+.button:hover {
+	box-shadow: inset 0 0 0 2px #c69c4d;
+	color: #c69c4d !important;
+}
+
+input[type="submit"]:hover:active,
+input[type="reset"]:hover:active,
+input[type="button"]:hover:active,
+button:hover:active,
+.button:hover:active {
+	background-color: rgba(198, 156, 77, 0.1);
+}
+
+input[type="submit"].primary,
+input[type="reset"].primary,
+input[type="button"].primary,
+button.primary,
+.button.primary {
+	background-color: #c69c4d;
+	color: #ffffff !important;
+	box-shadow: none;
+}
+
+input[type="submit"].primary:hover,
+input[type="reset"].primary:hover,
+input[type="button"].primary:hover,
+button.primary:hover,
+.button.primary:hover {
+	background-color: #a87f35;
+	color: #ffffff !important;
+	box-shadow: none;
+}
+
+/* Champs de formulaire */
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+	border-color: #c69c4d;
+	box-shadow: 0 0 0 2px #c69c4d;
+}
+
+input[type="checkbox"]:checked + label:before,
+input[type="radio"]:checked + label:before {
+	background: #c69c4d;
+	border-color: #c69c4d;
+}
+
+/* Divers éléments accentués */
+blockquote {
+	border-left-color: #c69c4d;
+}
+
+.icon.solid.solo:hover:before,
+ul.icons li a:hover:before {
+	color: #c69c4d !important;
+}
+
+/* Pagination */
+ul.pagination li > .page.active,
+.pagination > .page.active {
+	background-color: #c69c4d;
+	color: #ffffff !important;
+}
+
+ul.pagination li > .page.active:hover,
+.pagination > .page.active:hover {
+	background-color: #a87f35;
+	color: #ffffff !important;
+}
+
+/* Logo dans le header et l'intro */
+#header .logo {
+	border-bottom: 0;
+	padding: 0;
+}
+
+#header .logo img {
+	height: 3.5rem;
+	display: block;
+}
+
+#intro .logo-intro {
+	max-width: 16rem;
+	margin: 0 auto 2rem auto;
+	display: block;
+}
+
+@media screen and (max-width: 736px) {
+	#header .logo img {
+		height: 2.5rem;
+	}
+
+	#intro .logo-intro {
+		max-width: 11rem;
+	}
+}
+
+/* Touches dorées sur les titres majeurs */
+header.major h1:after,
+header.major h2:after {
+	content: '';
+	display: block;
+	width: 4rem;
+	height: 3px;
+	background-color: #c69c4d;
+	margin: 1.25rem auto 0 auto;
+}
+
+.post.featured header.major h2:after {
+	margin-top: 1.5rem;
+}
+
+section.post header.major h1:after {
+	margin: 1.25rem auto 0 auto;
+}
+
+/* Dates des posts en doré */
+.post .date,
+span.date {
+	background-color: #c69c4d !important;
+	color: #ffffff !important;
+	border: 0 !important;
+}
+
+/* Encadré infos clés */
+.rt-infos {
+	border: 2px solid #c69c4d;
+	padding: 1.5rem 2rem;
+	margin: 0 0 2rem 0;
+}
+
+.rt-infos ul {
+	list-style: none;
+	padding-left: 0;
+	margin-bottom: 0;
+}
+
+.rt-infos ul li {
+	padding: 0.35rem 0;
+	border-bottom: 1px dotted rgba(255, 255, 255, 0.15);
+}
+
+.rt-infos ul li:last-child {
+	border-bottom: 0;
+}
+
+.rt-infos strong {
+	color: #c69c4d;
+}
