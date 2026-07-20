@@ -148,12 +148,22 @@ section.post header.major h1:after {
 	margin: 1.25rem auto 0 auto;
 }
 
-/* Dates des posts en doré */
+/* Dates des posts en doré — pastille centrée */
 .post .date,
 span.date {
+	display: inline-block !important;
+	width: auto !important;
 	background-color: #c69c4d !important;
 	color: #ffffff !important;
 	border: 0 !important;
+	padding: 0.375rem 1.5rem !important;
+	letter-spacing: 0.1em;
+}
+
+/* Supprime les lignes qui barraient le bandeau */
+header.major > .date:before,
+header.major > .date:after {
+	display: none !important;
 }
 
 /* Encadré infos clés */
@@ -183,7 +193,70 @@ span.date {
 }
 
 /* ============================================
+   Footer compact — 3 colonnes centrées
+   ============================================ */
+#footer {
+	display: block;
+	padding: 3.5rem 3rem 3rem 3rem;
+}
+
+#footer > section.split.contact {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2rem;
+	padding: 0 !important;
+	border: 0 !important;
+}
+
+#footer > section.split.contact > section {
+	display: block !important;
+	border: 0 !important;
+	padding: 0 !important;
+	text-align: center;
+	align-items: initial !important;
+}
+
+#footer > section.split.contact > section > :first-child {
+	width: auto !important;
+}
+
+#footer > section.split.contact > section h3 {
+	margin-bottom: 0.75rem;
+	letter-spacing: 0.2em;
+}
+
+#footer > section.split.contact > section h3:after {
+	content: '';
+	display: block;
+	width: 2rem;
+	height: 2px;
+	background-color: #c69c4d;
+	margin: 0.6rem auto 0 auto;
+}
+
+#footer > section.split.contact > section p,
+#footer > section.split.contact > section ul {
+	margin-bottom: 0;
+}
+
+#footer > section.split.contact > section.alt > :last-child {
+	margin-top: 0 !important;
+}
+
+@media screen and (max-width: 736px) {
+	#footer {
+		padding: 2.5rem 1.5rem 2rem 1.5rem;
+	}
+
+	#footer > section.split.contact {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
+}
+
+/* ============================================
    Mini galerie photo (rt-gallery)
+   6 photos — grille équilibrée sur tout appareil
    ============================================ */
 .rt-gallery {
 	display: grid;
@@ -199,13 +272,7 @@ span.date {
 	border-bottom: 0 !important;
 	aspect-ratio: 4 / 3;
 	background-color: #1a1a1a;
-	cursor: zoom-in;
-}
-
-.rt-gallery-item--wide {
-	grid-column: span 2;
-	grid-row: span 2;
-	aspect-ratio: auto;
+	cursor: pointer;
 }
 
 .rt-gallery-item img {
@@ -213,62 +280,18 @@ span.date {
 	height: 100%;
 	object-fit: cover;
 	display: block;
-	transition: transform 0.45s ease, filter 0.45s ease;
-}
-
-.rt-gallery-item::after {
-	content: '';
-	position: absolute;
-	inset: 0;
-	box-shadow: inset 0 0 0 0 #c69c4d;
-	transition: box-shadow 0.3s ease;
-	pointer-events: none;
-}
-
-.rt-gallery-item::before {
-	content: '+';
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%) scale(0.5);
-	z-index: 1;
-	color: #ffffff;
-	font-size: 2.5rem;
-	font-weight: 300;
-	line-height: 1;
-	opacity: 0;
-	transition: opacity 0.3s ease, transform 0.3s ease;
-	pointer-events: none;
-	text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+	transition: transform 0.45s ease;
 }
 
 .rt-gallery-item:hover img,
 .rt-gallery-item:focus img {
-	transform: scale(1.06);
-	filter: brightness(0.65);
-}
-
-.rt-gallery-item:hover::after,
-.rt-gallery-item:focus::after {
-	box-shadow: inset 0 0 0 3px #c69c4d;
-}
-
-.rt-gallery-item:hover::before,
-.rt-gallery-item:focus::before {
-	opacity: 1;
-	transform: translate(-50%, -50%) scale(1);
+	transform: scale(1.05);
 }
 
 @media screen and (max-width: 736px) {
 	.rt-gallery {
 		grid-template-columns: repeat(2, 1fr);
 		gap: 0.5rem;
-	}
-
-	.rt-gallery-item--wide {
-		grid-column: span 2;
-		grid-row: span 1;
-		aspect-ratio: 16 / 9;
 	}
 }
 
