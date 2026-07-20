@@ -181,3 +181,223 @@ span.date {
 .rt-infos strong {
 	color: #c69c4d;
 }
+
+/* ============================================
+   Mini galerie photo (rt-gallery)
+   ============================================ */
+.rt-gallery {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.75rem;
+	margin: 0 0 2rem 0;
+}
+
+.rt-gallery-item {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	border-bottom: 0 !important;
+	aspect-ratio: 4 / 3;
+	background-color: #1a1a1a;
+	cursor: zoom-in;
+}
+
+.rt-gallery-item--wide {
+	grid-column: span 2;
+	grid-row: span 2;
+	aspect-ratio: auto;
+}
+
+.rt-gallery-item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+.rt-gallery-item::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	box-shadow: inset 0 0 0 0 #c69c4d;
+	transition: box-shadow 0.3s ease;
+	pointer-events: none;
+}
+
+.rt-gallery-item::before {
+	content: '+';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.5);
+	z-index: 1;
+	color: #ffffff;
+	font-size: 2.5rem;
+	font-weight: 300;
+	line-height: 1;
+	opacity: 0;
+	transition: opacity 0.3s ease, transform 0.3s ease;
+	pointer-events: none;
+	text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.rt-gallery-item:hover img,
+.rt-gallery-item:focus img {
+	transform: scale(1.06);
+	filter: brightness(0.65);
+}
+
+.rt-gallery-item:hover::after,
+.rt-gallery-item:focus::after {
+	box-shadow: inset 0 0 0 3px #c69c4d;
+}
+
+.rt-gallery-item:hover::before,
+.rt-gallery-item:focus::before {
+	opacity: 1;
+	transform: translate(-50%, -50%) scale(1);
+}
+
+@media screen and (max-width: 736px) {
+	.rt-gallery {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.5rem;
+	}
+
+	.rt-gallery-item--wide {
+		grid-column: span 2;
+		grid-row: span 1;
+		aspect-ratio: 16 / 9;
+	}
+}
+
+/* ============================================
+   Lightbox (rt-lightbox)
+   ============================================ */
+.rt-lightbox {
+	position: fixed;
+	inset: 0;
+	z-index: 10001;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(10, 10, 10, 0.95);
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(6px);
+}
+
+.rt-lightbox.is-open {
+	display: flex;
+	animation: rt-lightbox-fade 0.25s ease;
+}
+
+@keyframes rt-lightbox-fade {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+body.rt-lightbox-active {
+	overflow: hidden;
+}
+
+.rt-lightbox-figure {
+	margin: 0;
+	max-width: 90vw;
+	max-height: 85vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.rt-lightbox-img {
+	max-width: 90vw;
+	max-height: 78vh;
+	object-fit: contain;
+	border: 1px solid rgba(198, 156, 77, 0.5);
+	box-shadow: 0 8px 48px rgba(0, 0, 0, 0.7);
+	opacity: 0;
+	transform: scale(0.97);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.rt-lightbox-img.is-loaded {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.rt-lightbox-caption {
+	color: #ffffff;
+	font-size: 0.85rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	margin-top: 1rem;
+	text-align: center;
+}
+
+.rt-lightbox-counter {
+	position: absolute;
+	bottom: 1.25rem;
+	left: 50%;
+	transform: translateX(-50%);
+	color: #c69c4d;
+	font-size: 0.8rem;
+	letter-spacing: 0.2em;
+}
+
+.rt-lightbox-close,
+.rt-lightbox-prev,
+.rt-lightbox-next {
+	position: absolute;
+	z-index: 2;
+	appearance: none;
+	-webkit-appearance: none;
+	background: transparent;
+	border: 0;
+	box-shadow: none !important;
+	color: #ffffff;
+	cursor: pointer;
+	line-height: 1;
+	padding: 0.75rem;
+	transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.rt-lightbox-close:hover,
+.rt-lightbox-prev:hover,
+.rt-lightbox-next:hover,
+.rt-lightbox-close:focus,
+.rt-lightbox-prev:focus,
+.rt-lightbox-next:focus {
+	color: #c69c4d !important;
+	background: transparent !important;
+}
+
+.rt-lightbox-close {
+	top: 1rem;
+	right: 1.25rem;
+	font-size: 2.5rem;
+}
+
+.rt-lightbox-prev,
+.rt-lightbox-next {
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 2rem;
+}
+
+.rt-lightbox-prev { left: 1rem; }
+.rt-lightbox-next { right: 1rem; }
+
+.rt-lightbox-prev:hover { transform: translateY(-50%) translateX(-3px); }
+.rt-lightbox-next:hover { transform: translateY(-50%) translateX(3px); }
+
+@media screen and (max-width: 736px) {
+	.rt-lightbox-prev { left: 0.25rem; }
+	.rt-lightbox-next { right: 0.25rem; }
+
+	.rt-lightbox-img {
+		max-width: 96vw;
+		max-height: 72vh;
+	}
+}
